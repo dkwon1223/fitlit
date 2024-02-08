@@ -16,15 +16,17 @@ const userHydrationDate = document.querySelector("#dateHydrationTitle");
 const hydrationWeekButtons = document.querySelector("#hydrationDays");
 const randomDay = Math.floor(Math.random() * 100);
 let user
+let hydration
 Promise.all([fetchHydrationData(), fetchUserData()])
-.then(([hydration, usersData]) => {
+.then(([hydrationFetch, usersData]) => {
+  hydration = hydrationFetch
   const randomIndex =
     Math.floor(Math.random() * (usersData.users.length - 1)) + 1;
   user = getUserData(randomIndex, usersData.users);
   let avgStep = getAverageSteps(usersData.users);
   const flOzDays = getFluidOunceForWeek(user.id,hydration.hydrationData);
   updateUserInfo(avgStep);
-  updateHydration(randomDay,hydration,flOzDays);
+  updateHydration(randomDay,flOzDays);
 });
 
 let createdWaterMeter = new CircularFluidMeter(waterMeter, {
@@ -67,7 +69,7 @@ function updateFriendsList(friends) {
   });
 }
 
-function updateHydration(day = 0, hydration,flOzDays) {
+function updateHydration(day = 0,flOzDays) {
   const userHydration = getFluidOunceForDay(
     user.id,
     hydration.hydrationData,
