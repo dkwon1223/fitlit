@@ -14,19 +14,20 @@ const friendsList = document.querySelector("#friends");
 const waterMeter = document.querySelector("#waterMeterContainer");
 const userHydrationDate = document.querySelector("#dateHydrationTitle");
 const hydrationWeekButtons = document.querySelector("#hydrationDays");
-const randomDay = Math.floor(Math.random() * 100);
-let user
+
+
 let hydration
+const randomIndex = Math.floor(Math.random() * (usersData.users.length - 1)) + 1;
+const user = getUserData(randomIndex, usersData.users);
+const flOzDays = getFluidOunceForWeek(user.id, hydration.hydrationData);
+const today = flOzDays.length - 1;
+
 Promise.all([fetchHydrationData(), fetchUserData()])
 .then(([hydrationFetch, usersData]) => {
   hydration = hydrationFetch
-  const randomIndex =
-    Math.floor(Math.random() * (usersData.users.length - 1)) + 1;
-  user = getUserData(randomIndex, usersData.users);
   let avgStep = getAverageSteps(usersData.users);
-  const flOzDays = getFluidOunceForWeek(user.id,hydration.hydrationData);
   updateUserInfo(avgStep);
-  updateHydration(randomDay,flOzDays);
+  updateHydration(today,flOzDays);
 });
 
 let createdWaterMeter = new CircularFluidMeter(waterMeter, {
@@ -55,6 +56,7 @@ function updateUserInfo(avgStep) {
   <h3 id="stepGoal">My Step Goal: ${user.dailyStepGoal} steps</h3>
   <h3 id="comparedStepGoal"> Avg Step Goal: ${avgStep} steps`;
   updateFriendsList(user.friends);
+  updateHydration(user, today);
 }
 
 function updateFriendsList(friends) {
@@ -81,11 +83,11 @@ function updateHydration(day = 0,flOzDays) {
 
 
 hydrationWeekButtons.addEventListener("click", (event) => {
-  if (!flOzDays[randomDay - Number(event.target.id)]) {
+  if(!flOzDays[(today - Number(event.target.id))]) {
     userHydrationDate.innerHTML = `<h1>No Data to Display...`;
     createdWaterMeter.progress = 0;
   } else {
-    updateHydration(user, randomDay - Number(event.target.id));
+    updateHydration(user, (today - Number(event.target.id)));
   }
 });
 
