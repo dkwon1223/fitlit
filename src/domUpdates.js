@@ -15,20 +15,21 @@ const waterMeter = document.querySelector("#waterMeterContainer");
 const userHydrationDate = document.querySelector("#dateHydrationTitle");
 const hydrationWeekButtons = document.querySelector("#hydrationDays");
 
+let user, hydration, today, flOzDays;
 
-let hydration
-const randomIndex = Math.floor(Math.random() * (usersData.users.length - 1)) + 1;
-const user = getUserData(randomIndex, usersData.users);
-const flOzDays = getFluidOunceForWeek(user.id, hydration.hydrationData);
-const today = flOzDays.length - 1;
-
-Promise.all([fetchHydrationData(), fetchUserData()])
-.then(([hydrationFetch, usersData]) => {
-  hydration = hydrationFetch
-  let avgStep = getAverageSteps(usersData.users);
-  updateUserInfo(avgStep);
-  updateHydration(today,flOzDays);
-});
+Promise.all([fetchHydrationData(), fetchUserData()]).then(
+  ([hydrationFetch, usersData]) => {
+    hydration = hydrationFetch;
+    const randomIndex =
+      Math.floor(Math.random() * (usersData.users.length - 1)) + 1;
+    user = getUserData(randomIndex, usersData.users);
+    let avgStep = getAverageSteps(usersData.users);
+    flOzDays = getFluidOunceForWeek(user.id, hydration.hydrationData);
+    today = flOzDays.length - 1;
+    updateUserInfo(avgStep);
+    updateHydration(today, flOzDays);
+  }
+);
 
 let createdWaterMeter = new CircularFluidMeter(waterMeter, {
   borderWidth: 15,
@@ -71,7 +72,7 @@ function updateFriendsList(friends) {
   });
 }
 
-function updateHydration(day = 0,flOzDays) {
+function updateHydration(user, day = 0) {
   const userHydration = getFluidOunceForDay(
     user.id,
     hydration.hydrationData,
@@ -81,13 +82,12 @@ function updateHydration(day = 0,flOzDays) {
   createdWaterMeter.progress = userHydration.numOunces;
 }
 
-
 hydrationWeekButtons.addEventListener("click", (event) => {
-  if(!flOzDays[(today - Number(event.target.id))]) {
+  if (!flOzDays[today - Number(event.target.id)]) {
     userHydrationDate.innerHTML = `<h1>No Data to Display...`;
     createdWaterMeter.progress = 0;
   } else {
-    updateHydration(user, (today - Number(event.target.id)));
+    updateHydration(user, today - Number(event.target.id));
   }
 });
 
