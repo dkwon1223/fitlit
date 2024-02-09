@@ -203,7 +203,7 @@ aside {
   justify-content: space-evenly;
 }
 
-#sleepWidget {
+#sleepWidget, #sleepAveragesWidget {
   flex-direction: column;
 }
 
@@ -238,10 +238,17 @@ aside {
   margin-bottom: -5%;
 }
 
+#averageSleepTitle {
+  text-align: center;
+  margin-top: -2%;
+}
+
 .sleep-titles {
   display: flex;
   justify-content: space-evenly;
 }
+
+
 
 
 

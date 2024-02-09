@@ -25,9 +25,14 @@ const userHydrationDate = document.querySelector("#dateHydrationTitle");
 const hydrationWeekButtons = document.querySelector("#hydrationDays");
 const sleepHoursMeter = document.querySelector("#sleepHoursMeter")
 const sleepHours = document.querySelector("#sleepHours")
-const sleepQualityMeter = document.querySelector('#sleepQualityMeter')
-const sleepQuality = document.querySelector('#sleepQuality')
-const userSleepTitle = document.querySelector('#dateSleepTitle')
+const sleepQualityMeter = document.querySelector("#sleepQualityMeter")
+const sleepQuality = document.querySelector("#sleepQuality")
+const userSleepTitle = document.querySelector("#dateSleepTitle")
+const sleepAverageTitle = document.querySelector("#averageSleepTitle")
+const sleepHoursMeterAvg = document.querySelector("#sleepHoursMeterAverage")
+const sleepHoursAvg = document.querySelector("#sleepHoursAverage")
+const sleepQualityMeterAvg = document.querySelector("#sleepQualityMeterAverage")
+const sleepQualityAvg = document.querySelector("#sleepQualityAverage")
 
 
 
@@ -47,6 +52,7 @@ Promise.all([fetchHydrationData(), fetchUserData(), fetchSleepData()]).then(
     updateUserInfo(avgStep);
     updateHoursSlept(user);
     updateSleepQuality(user);
+    updateSleepAverages(user);
   }
 );
 
@@ -115,9 +121,9 @@ function updateHoursSlept(user) {
     user.id,
     sleep,
     userSleepInfo[0].date
-  )
-  userSleepTitle.innerHTML = `<h1>Sleep Stats</h1><h3>${userSleepInfo[0].date}</h3>`
-  sleepProgressBar(userSleepHours, sleepHours, sleepHoursMeter, 12)
+  );
+  userSleepTitle.innerHTML = `<h1>Daily Sleep Stats</h1><h3>${userSleepInfo[0].date}</h3>`
+  sleepProgressBar(userSleepHours, sleepHours, sleepHoursMeter, 12);
 }
 
 function updateSleepQuality(user) {
@@ -125,8 +131,8 @@ function updateSleepQuality(user) {
     user.id,
     sleep,
     userSleepInfo[0].date
-  )
-  sleepProgressBar(userSleepQuality, sleepQuality, sleepQualityMeter, 5)
+  );
+  sleepProgressBar(userSleepQuality, sleepQuality, sleepQualityMeter, 5);
 }
 
 function sleepProgressBar(hours, type, meter, cap) {
@@ -135,6 +141,14 @@ function sleepProgressBar(hours, type, meter, cap) {
     #00008B ${hours / cap * 360}deg,
     #89CFF0 ${hours / cap * 360}deg
   )`;
+}
+
+function updateSleepAverages(user) {
+  const userSleepAvgHours = getAverageHoursSleptNet(user.id, sleep);
+  const userSleepAvgQuality = getAverageSleepQualityNet(user.id, sleep);
+  sleepAverageTitle.innerHTML = `<h1>Average Sleep Stats</h1>`
+  sleepProgressBar(userSleepAvgHours, sleepHoursAvg, sleepHoursMeterAvg, 12);
+  sleepProgressBar(userSleepAvgQuality, sleepQualityAvg, sleepQualityMeterAvg, 5);
 }
 
 
