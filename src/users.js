@@ -1,5 +1,3 @@
-import { updateUserInfo } from "./domUpdates";
-
 function getUserData(userID, users) {
   let findUser = users.find((user) => {
     return user.id === userID;
