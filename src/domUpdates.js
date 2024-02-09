@@ -1,5 +1,6 @@
 //NOTE: Your DOM manipulation will occur in this file
-import { fetchHydrationData, fetchUserData } from "./apiCalls";
+import { fetchHydrationData, fetchUserData , fetchSleepData} from "./apiCalls";
+
 
 import { CircularFluidMeter } from "fluid-meter";
 import { getUserData, getAverageSteps } from "./users";
@@ -8,17 +9,33 @@ import {
   getFluidOunceForWeek,
   getAverageFluidOunce,
 } from "./hydration";
+import {
+  getAverageHoursSleptNet,
+  getAverageSleepQualityNet,
+  getHoursSlept,
+  getSleepQuality,
+  getHoursSleptWeek,
+  getSleepQualityWeek
+} from "./sleep";
 
 const info = document.querySelector("#info");
 const friendsList = document.querySelector("#friends");
 const waterMeter = document.querySelector("#waterMeterContainer");
 const userHydrationDate = document.querySelector("#dateHydrationTitle");
 const hydrationWeekButtons = document.querySelector("#hydrationDays");
+const sleepHoursMeter = document.querySelector("#sleepHoursMeter")
+const sleepHours = document.querySelector("#sleepHours")
+const sleepQualityMeter = document.querySelector('#sleepQualityMeter')
+const sleepQuality = document.querySelector('#sleepQuality')
+const userSleepTitle = document.querySelector('#dateSleepTitle')
 
-let user, hydration, today, flOzDays;
 
-Promise.all([fetchHydrationData(), fetchUserData()]).then(
-  ([hydrationFetch, usersData]) => {
+
+let user, hydration, sleep, today, flOzDays, userSleepInfo;
+
+Promise.all([fetchHydrationData(), fetchUserData(), fetchSleepData()]).then(
+  ([hydrationFetch, usersData, sleepFetch]) => {
+    sleep = sleepFetch
     hydration = hydrationFetch;
     const randomIndex =
       Math.floor(Math.random() * (usersData.users.length - 1)) + 1;
@@ -26,8 +43,10 @@ Promise.all([fetchHydrationData(), fetchUserData()]).then(
     let avgStep = getAverageSteps(usersData.users);
     flOzDays = getFluidOunceForWeek(user.id, hydration.hydrationData);
     today = flOzDays.length - 1;
+    userSleepInfo = getHoursSleptWeek(user.id, sleep, '2023/07/01').reverse()
     updateUserInfo(avgStep);
-    updateHydration(today, flOzDays);
+    updateHoursSlept(user);
+    updateSleepQuality(user);
   }
 );
 
@@ -90,5 +109,33 @@ hydrationWeekButtons.addEventListener("click", (event) => {
     updateHydration(user, today - Number(event.target.id));
   }
 });
+
+function updateHoursSlept(user) {
+  const userSleepHours = getHoursSlept(
+    user.id,
+    sleep,
+    userSleepInfo[0].date
+  )
+  userSleepTitle.innerHTML = `<h1>Sleep Stats</h1><h3>${userSleepInfo[0].date}</h3>`
+  sleepProgressBar(userSleepHours, sleepHours, sleepHoursMeter, 12)
+}
+
+function updateSleepQuality(user) {
+  const userSleepQuality = getSleepQuality(
+    user.id,
+    sleep,
+    userSleepInfo[0].date
+  )
+  sleepProgressBar(userSleepQuality, sleepQuality, sleepQualityMeter, 5)
+}
+
+function sleepProgressBar(hours, type, meter, cap) {
+  type.innerText = `${hours}`;
+  meter.style.background = `conic-gradient(
+    #00008B ${hours / cap * 360}deg,
+    #89CFF0 ${hours / cap * 360}deg
+  )`;
+}
+
 
 export { updateUserInfo };

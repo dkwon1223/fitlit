@@ -22,4 +22,4 @@ function fetchSleepData() {
     .then((data) => (sleep = data));
 }
 
-export { fetchHydrationData, fetchUserData, usersData, hydration, sleep };
+export { fetchHydrationData, fetchUserData, usersData, hydration, sleep , fetchSleepData};

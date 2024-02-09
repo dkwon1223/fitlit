@@ -57,7 +57,7 @@ function getHoursSleptWeek(userID, sleep, date) {
     });
     let week = allSleepData.splice((allSleepData.indexOf(targetDate)-7), (allSleepData.indexOf(targetDate)+1));
     return week.map((day) => {
-        return day.hoursSlept;
+        return day;
     })
 }
 
@@ -74,3 +74,5 @@ function getSleepQualityWeek(userID, sleep, date) {
         return day.sleepQuality;
     })
 }
+
+export { getAverageHoursSleptNet, getAverageSleepQualityNet, getHoursSlept, getSleepQuality, getHoursSleptWeek, getSleepQualityWeek }
