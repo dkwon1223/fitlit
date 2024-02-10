@@ -70,6 +70,11 @@ section {
 }
 
 #userIcon {
+  right: 60%;
+  top: 10%;
+}
+
+#friendsIcon {
   right: 30%;
   top: 10%;
 }
