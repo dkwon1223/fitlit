@@ -345,25 +345,37 @@ describe("getFluidOunceForWeek", function () {
     expect(getFluidOunceForWeek).to.be.a("function");
   });
 
-  it("should show fluid ounces consumed each day over a week", function () {});
+  it("should show fluid ounces consumed each day over a week", function () {
+    const userFluidOunces1 = getFluidOunceForWeek(1, hydrationData);
+    expect(userFluidOunces1).to.deep.equal([
+      {
+        date: "2023/03/24",
+        ounces: 30,
+      },
+      {
+        date: "2023/06/30",
+        ounces: 70,
+      },
+      {
+        date: "2023/07/01",
+        ounces: 95,
+      },
+    ]);
+  });
 });
+
 describe("Test sleep functions", function () {
   const sleepTest = {
     sleepData: [
-      {
-        userID: 5,
-        date: "2023/03/24",
-        hoursSlept: 8,
-        sleepQuality: 3.1,
-      },
-      { userID: 5, date: "2023/03/25", hoursSlept: 4, sleepQuality: 2.1 },
-      { userID: 5, date: "2023/03/26", hoursSlept: 5.7, sleepQuality: 1.7 },
-      { userID: 31, date: "2023/03/24", hoursSlept: 4.9, sleepQuality: 4.9 },
-      { userID: 32, date: "2023/03/24", hoursSlept: 11, sleepQuality: 4.7 },
-      { userID: 5, date: "2023/03/27", hoursSlept: 5.7, sleepQuality: 1.7 },
-      { userID: 5, date: "2023/03/28", hoursSlept: 10.4, sleepQuality: 2.6 },
-      { userID: 5, date: "2023/03/29", hoursSlept: 9.8, sleepQuality: 3 },
-      { userID: 5, date: "2023/03/30", hoursSlept: 10, sleepQuality: 2.4 }
+      {userID: 5, date: "2023/03/24", hoursSlept: 8, sleepQuality: 3.1},
+      { userID: 5, date: "2023/03/25", hoursSlept: 4, sleepQuality: 2.1},
+      { userID: 5, date: "2023/03/26", hoursSlept: 5.7, sleepQuality: 1.7},
+      { userID: 31, date: "2023/03/24", hoursSlept: 4.9, sleepQuality: 4.9},
+      { userID: 32, date: "2023/03/24", hoursSlept: 11, sleepQuality: 4.7},
+      { userID: 5, date: "2023/03/27", hoursSlept: 5.7, sleepQuality: 1.7},
+      { userID: 5, date: "2023/03/28", hoursSlept: 10.4, sleepQuality: 2.6},
+      { userID: 5, date: "2023/03/29", hoursSlept: 9.8, sleepQuality: 3},
+      { userID: 5, date: "2023/03/30", hoursSlept: 10, sleepQuality: 2.4}
     ],
   };
   const userTest = {
@@ -407,14 +419,22 @@ describe("Test sleep functions", function () {
   });
   describe("getHoursSleptWeek", function () {
     it("should get the hours slept for the week", function () {
-      const expected = getHoursSleptWeek(this.user.id,this.sleep,"2023/03/24")
-      expect(expected).to.be.an('array').with.lengthOf(7);
+      const expected = getHoursSleptWeek(
+        this.user.id,
+        this.sleep,
+        "2023/03/30"
+      );
+      expect(expected).to.be.an("array").with.lengthOf(7);
     });
   });
-  describe("getSleepQualityWeek",function(){
-    it("should return sleep quality for 7 days", function(){
-      const expected = getSleepQualityWeek(this.user.id,this.sleep,"2023/03/24")
-      expect(expected).to.be.an('array').with.lengthOf(7);
-    })
-  })
+  describe("getSleepQualityWeek", function () {
+    it("should return sleep quality for 7 days", function () {
+      const expected = getSleepQualityWeek(
+        this.user.id,
+        this.sleep,
+        "2023/03/24"
+      );
+      expect(expected).to.be.an("array").with.lengthOf(7);
+    });
+  });
 });
