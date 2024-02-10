@@ -1,12 +1,14 @@
 body,
 html {
-  background-color: #e3edf7;
+  background-image: linear-gradient(to right bottom, #e3edf7, #dde7f1, #d7e1eb, #d2dce6, #ccd6e0, #ccd6e0, #ccd6e0, #ccd6e0, #d2dce6, #d7e1eb, #dde7f1, #e3edf7);
+  color: #e3edf7;
   background-repeat: no-repeat;
   height: 100%;
   display: flex;
   margin: 0;
   width: 100%;
-  font-family: "M PLUS Rounded 1c", sans-serif;
+  /* font-family: "M PLUS Rounded 1c", sans-serif; */
+  font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
 section {
@@ -57,8 +59,36 @@ section {
   margin-bottom: 0;
   display: flex;
   flex-direction: row;
-  background-color: rgb(158, 175, 192);
+  /* background-color: rgb(158, 175, 192); */
+  background-image: linear-gradient(to right bottom, #ff6968, #fe706e, #fc7675, #fb7c7b, #f98281, #f98281, #f98281, #f98281, #fb7c7b, #fc7675, #fe706e, #ff6968);
 }
+
+.icon {
+  position: absolute;
+  height: 10%;
+  width: 10%;
+}
+
+#userIcon {
+  right: 30%;
+  top: 8%;
+}
+
+#sleepIcon1 {
+  right: 65%;
+  top: 55%;
+}
+
+#sleepIcon2 {
+  right: 30%;
+  top: 55%;
+}
+
+#hydrationIcon {
+  right: 0%;
+  top: 10%;
+}
+
 
 #info,
 #friends {
@@ -77,11 +107,18 @@ section {
 
 h1 {
   font-size: xx-large;
+  font-weight: 600;
   margin: 2%;
 }
 
+h2 {
+  font-size: x-large;
+  font-weight: 700;
+}
+
 h3 {
-  font-size: medium;
+  font-size: large;
+  font-weight: 700;
   margin: 2%;
 }
 
@@ -93,7 +130,7 @@ aside {
 #hydrationWidget {
   margin-top: 40px;
   height: 87%;
-  background-color: #87b6e6;
+  background-image: linear-gradient(to right bottom, #2ac3ff, #48c7fc, #5dcbfa, #6ecef7, #7ed2f5, #7ed2f5, #7ed2f5, #7ed2f5, #6ecef7, #5dcbfa, #48c7fc, #2ac3ff);
   flex-direction: column;
   align-items: center;
 }
@@ -136,8 +173,9 @@ aside {
   border-radius: 1rem;
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-size: large;
-  font-weight: 600;
-  color: white;
+  font-weight: 400;
+  color: #e3edf7;
+  background-image: linear-gradient(to right bottom, #4b4b86, #50508b, #56568f, #5b5b94, #616199, #616199, #616199, #616199, #5b5b94, #56568f, #50508b, #4b4b86);
   cursor: pointer;
   box-shadow: 10px 10px 12px -1px rgba(0, 0, 0, 0.61),
     -10px 10px 15px -1px rgba(255, 255, 255, 0.822);
@@ -174,6 +212,14 @@ button {
 #sleepWidget,
 #sleepAveragesWidget {
   flex-direction: column;
+}
+
+#sleepWidget {
+  background-image: linear-gradient(to right bottom, #5a65ff, #636dfe, #6d76fd, #757efc, #7e86fb, #7e86fb, #7e86fb, #7e86fb, #757efc, #6d76fd, #636dfe, #5a65ff);
+}
+
+#sleepAveragesWidget {
+  background-image: linear-gradient(to right bottom, #7a55fd, #8261fb, #8b6cf9, #9276f7, #9a81f4, #9a81f4, #9a81f4, #9a81f4, #9276f7, #8b6cf9, #8261fb, #7a55fd);
 }
 
 .sleep-meter {
@@ -216,3 +262,4 @@ button {
   display: flex;
   justify-content: space-evenly;
 }
+

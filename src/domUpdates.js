@@ -62,7 +62,7 @@ let createdWaterMeter = new CircularFluidMeter(waterMeter, {
   backgroundColor: "#002d59",
   borderColor: "#3e4954",
   bubbleColor: "#6bcfff",
-  fontFamily: "Codystar",
+  fontFamily: "'M PLUS Rounded 1c', sans-serif",
   fontSize: 34,
   progressFormatter: (value) => {
     return `${value.toFixed(0)} fl oz`;
