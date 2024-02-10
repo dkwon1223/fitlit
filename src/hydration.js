@@ -4,8 +4,8 @@ function getAverageFluidOunce(userID, hydrationData) {
     if (hydrate.userID === userID) {
       total += hydrate.numOunces;
       count++;
-      return total;
     }
+    return total;
   }, 0);
   return Math.round(totalOunces / count);
 }
@@ -30,8 +30,4 @@ function getFluidOunceForWeek(userID, hydrationData) {
   return usersWeekHydration;
 }
 
-export {
-  getAverageFluidOunce,
-  getFluidOunceForDay,
-  getFluidOunceForWeek
-};
+export { getAverageFluidOunce, getFluidOunceForDay, getFluidOunceForWeek };
