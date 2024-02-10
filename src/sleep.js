@@ -74,3 +74,5 @@ function getSleepQualityWeek(userID, sleep, date) {
         return day.sleepQuality;
     })
 }
+
+export {getAverageHoursSleptNet, getAverageSleepQualityNet, getHoursSlept, getHoursSleptWeek, getSleepQuality, getSleepQualityWeek}
