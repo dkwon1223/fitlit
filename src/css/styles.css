@@ -71,11 +71,11 @@ section {
 
 #userIcon {
   right: 30%;
-  top: 8%;
+  top: 10%;
 }
 
 #sleepIcon1 {
-  right: 65%;
+  right: 64%;
   top: 55%;
 }
 
@@ -106,18 +106,19 @@ section {
 }
 
 h1 {
-  font-size: xx-large;
+  font-size: x-large;
   font-weight: 600;
   margin: 2%;
 }
 
 h2 {
-  font-size: x-large;
+  font-size: large;
   font-weight: 700;
+  margin: none;
 }
 
 h3 {
-  font-size: large;
+  font-size: medium;
   font-weight: 700;
   margin: 2%;
 }
@@ -177,8 +178,8 @@ aside {
   color: #e3edf7;
   background-image: linear-gradient(to right bottom, #4b4b86, #50508b, #56568f, #5b5b94, #616199, #616199, #616199, #616199, #5b5b94, #56568f, #50508b, #4b4b86);
   cursor: pointer;
-  box-shadow: 10px 10px 12px -1px rgba(0, 0, 0, 0.61),
-    -10px 10px 15px -1px rgba(255, 255, 255, 0.822);
+  box-shadow: 5px 5px 12px -1px rgba(0, 0, 0, 0.61),
+    -5px 5px 15px -1px rgba(255, 255, 255, 0.822);
 }
 button {
   background-color: #466585;
