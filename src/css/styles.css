@@ -205,7 +205,7 @@ h3 {
 #days {
   position: absolute;
   top: 0.5%;
-  width: 1700px;
+  width: 100vw;
   height: 40px;
 }
 
