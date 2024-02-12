@@ -34,8 +34,9 @@ Additional enhancements could include:
 ## Set Up
 1. Fork this repository
 2. Clone your own local version of the repository
-3. Run `npm start` to start the server
-4. Navigate to the address provided within the terminal ex: http://localhost:8080/
+3. Run `npm install`
+4. Run `npm start` to start the server
+5. Navigate to the address provided within the terminal ex: http://localhost:8080/
 
 ## Test Driven Development
 This application uses a combination of Mocha Testing Framework and Chai Assertion Library
