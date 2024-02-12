@@ -10,6 +10,7 @@ Having a clear and concise overview of activity and tracking it over time is cru
 - FitLit API
 
 ## Primary Technologies Used
+- Webpack
 - HTML
 - CSS
 - JavaScript
