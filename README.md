@@ -29,7 +29,8 @@ Additional enhancements could include:
 <img width="1440" alt="Screenshot 2024-02-12 at 2 30 11 PM" src="https://github.com/dkwon1223/fitlit/assets/112133897/0d196ca6-cda7-4d8a-9b51-8af300214bb6">
 
 ## Gif 
-![animated](https://github.com/dkwon1223/fitlit-starter-kit/assets/147420318/d15c2e29-b32d-418a-8a2a-63baed37fdb3)
+![animated 2](https://github.com/dkwon1223/fitlit/assets/147420318/02437f0e-2af6-45dd-aacf-0a8ba449f047)
+
 
 ## Set Up
 1. Fork this repository
