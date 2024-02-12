@@ -34,7 +34,7 @@ Additional enhancements could include:
 ## Set Up
 1. Fork this repository
 2. Clone your own local version of the repository
-3. Run `npm install`
+3. Run `npm install` to install project dependencies
 4. Run `npm start` to start the server
 5. Navigate to the address provided within the terminal ex: http://localhost:8080/
 
