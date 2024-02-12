@@ -1,21 +1,18 @@
-
-let usersData, hydration, sleep;
-
-function fetchUserData() {
+function fetchUserData(usersData) {
   return fetch("https://fitlit-api.herokuapp.com/api/v1/users")
     .then((response) => response.json())
     .then((data) => (usersData = data));
 }
-function fetchHydrationData() {
+function fetchHydrationData(hydration) {
   return fetch("https://fitlit-api.herokuapp.com/api/v1/hydration")
     .then((repsonse) => repsonse.json())
     .then((data) => (hydration = data));
 }
 
-function fetchSleepData() {
+function fetchSleepData(sleep) {
   return fetch("https://fitlit-api.herokuapp.com/api/v1/sleep")
     .then((repsonse) => repsonse.json())
     .then((data) => (sleep = data));
 }
 
-export { fetchHydrationData, fetchUserData, usersData, hydration, sleep , fetchSleepData};
+export { fetchHydrationData, fetchUserData, fetchSleepData};
