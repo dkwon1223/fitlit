@@ -1,7 +1,3 @@
-// Your fetch requests will live here!
-fetch("https://fitlit-api.herokuapp.com/api/v1/users")
-  .then((response) => response.json())
-  .then((data) => (usersData = data));
 
 let usersData, hydration, sleep;
 
