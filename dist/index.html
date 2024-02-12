@@ -3,9 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <title>Fitlit</title>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap" rel="stylesheet"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <section class="main">
@@ -27,6 +30,8 @@
               <div id="friends">
                 <h1>Friends</h1>
               </div>
+              <img class="icon" id="userIcon" src="./images/user-icon.svg" alt="user icon">
+              <img class="icon" id="friendsIcon" src="./images/friends-icon.svg" alt="friends icon">
             </div>
           </section>
           <section class="sleep-area">
@@ -44,6 +49,7 @@
                   <div class="sleep-data" id="sleepQualityAverage">0</div>
                 </div>
               </div>
+              <img class="icon" id="sleepIcon1" src="./images/sleep-icon.svg" alt="sleep icon">
             </div>
             <div class="widget" id="sleepWidget">
               <h1 id="dateSleepTitle"></h1>
@@ -58,20 +64,22 @@
                 <div class="sleep-meter" id="sleepQualityMeter">
                   <div class="sleep-data" id="sleepQuality">0</div>
                 </div>
+                <img class="icon" id="sleepIcon2" src="./images/sleep-icon.svg" alt="sleep icon">
               </div>
             </div>
           </section>
-      </section>
-      <section class="hydration-area">
-        <div class="widget" id="hydrationWidget">
-          <section class="visual-label" id="hydrationBottleLabel">
-            <h1 id="dateHydrationTitle"></h1>
-          </section>
-          <section class="visual" id="hydrationVisual">
-            <div id="waterMeterContainer">
-              <canvas id="waterMeter"></canvas>
-            </div>
-          </section>
+        </section>
+        <section class="hydration-area">
+          <div class="widget" id="hydrationWidget">
+            <section class="visual-label" id="hydrationBottleLabel">
+              <h1 id="dateHydrationTitle"></h1>
+            </section>
+            <section class="visual" id="hydrationVisual">
+              <div id="waterMeterContainer">
+                <canvas id="waterMeter"></canvas>
+              </div>
+            </section>
+            <img class="icon" id="hydrationIcon" src="./images/hydration-icon.svg" alt="water icon">
         </div>
       </section>
     </section>
