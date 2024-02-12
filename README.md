@@ -15,6 +15,8 @@ The details of this project are outline in [this project spec](http://frontend.t
 
 Mocha and chai are already set up, with a boilerplate test for you..
 
+## Gif 
+![animated](https://github.com/dkwon1223/fitlit-starter-kit/assets/147420318/d15c2e29-b32d-418a-8a2a-63baed37fdb3)
 
 ## Data Model
 
