@@ -2,7 +2,7 @@
 
 A site for tracking various data of users including user information, friends, step goals, sleep information, and hydration information.
 
-## Backgorund/About
+## Background/About
 
 Having a clear and concise overview of activity and tracking it over time is crucial for any fitness/activity related application. Using data fetched from an API, this application simulates viewing activities of random users over a 7 day period.
 
