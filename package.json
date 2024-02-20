@@ -2,7 +2,7 @@
   "name": "activity-tracker",
   "version": "1.0.0",
   "description": "",
-  "main": "scripts.js",
+  "main": "domUpdates.js",
   "scripts": {
     "start": "webpack serve",
     "build": "webpack",
