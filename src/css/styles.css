@@ -131,7 +131,7 @@ section,
 }
 
 #userIcon {
-  right: 60%;
+  right: 59%;
   top: 10%;
 }
 
@@ -167,12 +167,22 @@ section,
 #friends {
   width: 40%;
   overflow-x: auto;
+  border-left: 4px solid;
 }
 
 h1 {
   font-size: x-large;
   font-weight: 600;
   margin: 2%;
+}
+
+#name {
+  font-size: 1.6rem;
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
 }
 
 h2 {

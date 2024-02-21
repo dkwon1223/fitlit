@@ -1,3 +1,8 @@
+import "./css/styles.css";
+import "./images/user-icon.svg";
+import "./images/sleep-icon.svg";
+import "./images/hydration-icon.svg";
+import "./images/friends-icon.svg";
 import { fetchHydrationData, fetchUserData, fetchSleepData } from "./apiCalls";
 import { CircularFluidMeter } from "fluid-meter";
 import { getUserData, getAverageSteps } from "./users";
@@ -108,7 +113,7 @@ function updateHydration(user, day = 0) {
 
 dayButtons.addEventListener("click", (event) => {
   let button = event.target.closest("button");
-  console.log(button);
+
   if (!flOzDays[today - Number(button.id)]) {
     userHydrationDate.innerHTML = `<h1>No Data to Display...</h1>`;
     createdWaterMeter.progress = 0;
@@ -164,4 +169,4 @@ function updateButtonsDate(dates) {
   });
 }
 
-export { updateUserInfo };
+// export { updateUserInfo, updateFriendsList, updateHydration };
