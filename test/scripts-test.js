@@ -48,10 +48,6 @@ describe("getUserData", function () {
     ];
   });
 
-  it("should be a function", function () {
-    expect(getUserData).to.be.a("function");
-  });
-
   it("should retrieve user data based on ID", function () {
     const coryData = getUserData(2, users);
     expect(coryData).to.deep.equal({
@@ -119,10 +115,6 @@ describe("getAverageSteps", function () {
     ];
   });
 
-  it("should be a function", function () {
-    expect(getAverageSteps).to.be.a("function");
-  });
-
   it("should return average step goals for users", function () {
     const averageSteps = getAverageSteps(users);
     expect(averageSteps).to.equal(5333);
@@ -179,10 +171,6 @@ describe("getAverageFluidOunces", function () {
         numOunces: 55,
       },
     ];
-  });
-
-  it("should be a function", function () {
-    expect(getAverageFluidOunce).to.be.a("function");
   });
 
   it("should show the user's avg fluid ounces consumed per day all time", function () {
@@ -247,10 +235,6 @@ describe("getFluidOuncesForDay", function () {
         numOunces: 55,
       },
     ];
-  });
-
-  it("should be a function", function () {
-    expect(getFluidOunceForDay).to.be.a("function");
   });
 
   it("should show user's ounces consumed for a specific day", function () {
@@ -341,9 +325,6 @@ describe("getFluidOunceForWeek", function () {
     ];
   });
 
-  it("should be a function", function () {
-    expect(getFluidOunceForWeek).to.be.a("function");
-  });
 
   it("should show fluid ounces consumed each day over a week", function () {
     const userFluidOunces1 = getFluidOunceForWeek(1, hydrationData);
@@ -435,6 +416,8 @@ describe("Test sleep functions", function () {
         "2023/03/24"
       );
       expect(expected).to.be.an("array").with.lengthOf(7);
+      expect(expected[0]).to.deep.equal({ userID: 5, date: '2023/03/24', hoursSlept: 8, sleepQuality: 3.1 })
+      expect(expected[6]).to.deep.equal({ userID: 5, date: "2023/03/30", hoursSlept: 10, sleepQuality: 2.4})
     });
   });
 });
