@@ -435,6 +435,8 @@ describe("Test sleep functions", function () {
         "2023/03/24"
       );
       expect(expected).to.be.an("array").with.lengthOf(7);
+      expect(expected[0]).to.deep.equal({ userID: 5, date: '2023/03/24', hoursSlept: 8, sleepQuality: 3.1 })
+      expect(expected[6]).to.deep.equal({ userID: 5, date: "2023/03/30", hoursSlept: 10, sleepQuality: 2.4})
     });
   });
 });
