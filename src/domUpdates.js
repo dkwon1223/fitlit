@@ -96,7 +96,7 @@ function updateFriendsList(friends) {
       `<aside>
         <h3>${friend.name}</h3>
         <h3>Step Goal: ${friend.dailyStepGoal}</h3>
-        </aside>`
+      </aside>`
     );
   });
 }
