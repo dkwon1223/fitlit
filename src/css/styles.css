@@ -154,6 +154,7 @@ section,
 #hydrationIcon {
   right: 0%;
   top: 10%;
+  filter: none;
 }
 
 #info,
@@ -318,10 +319,19 @@ button {
 
 .pop-up-form{
   display: none;
+  width:100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  backdrop-filter: blur(6px);
+}
+
+#hydrationForm {
   position: absolute;
-  width:500px;
-  left:40%;
-  top:15%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #hydrationForm input[type=date], #hydrationForm input[type=number]{

@@ -43,6 +43,7 @@ const dateInput = document.querySelector('#dateInput');
 const ozInput = document.querySelector("#ozInput");
 const submitButton = document.querySelector('.formBtn')
 const formError = document.querySelector('.form-error')
+const hydrationIcon = document.querySelector('#hydrationIcon')
 let user, hydration, sleep, today, flOzDays, userSleepInfo, sleepDay;
 let createdWaterMeter = new CircularFluidMeter(waterMeter, {
   borderWidth: 15,
@@ -83,7 +84,7 @@ dayButtons.addEventListener("click", (event) => {
 });
 
 submitButton.addEventListener("click", () => {
-  if(ozInput.value.trim().length > 0 && dateInput.value.length > 0) {
+  if(ozInput.value.length > 0 && dateInput.value.length > 0) {
     closeForm();
     let date = dateInput.value.split("-").join("/");
     postHydrationData(date, ozInput.value, user.id);
@@ -220,10 +221,11 @@ function updateButtonsDate(dates) {
 
 function openForm() {
   popUpForm.style.display = 'block';
+  hydrationIcon.style.filter = 'blur(6px)'
 }
 
 function closeForm() {
-  event.preventDefault()
   popUpForm.style.display = 'none'
+  hydrationIcon.style.filter = 'none'
   sessionStorage.setItem("user", user.id);
 }
