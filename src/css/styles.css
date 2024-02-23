@@ -131,13 +131,14 @@ section,
 }
 
 #userIcon {
-  right: 59%;
+  right: 57%;
   top: 10%;
 }
 
 #friendsIcon {
-  right: 31%;
+  right: 30%;
   top: 8%;
+  height: 13%;
 }
 
 #sleepIcon1 {
@@ -146,7 +147,7 @@ section,
 }
 
 #sleepIcon2 {
-  right: 30%;
+  right: 29%;
   top: 55%;
 }
 
@@ -168,6 +169,10 @@ section,
   width: 40%;
   overflow-x: auto;
   border-left: 4px solid;
+}
+
+#friendsHeader {
+  margin-bottom: 8%;
 }
 
 h1 {
