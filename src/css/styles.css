@@ -224,7 +224,8 @@ h3 {
   height: 40px;
 }
 
-.day-selector {
+.day-selector,
+.input-hydration {
   height: 80%;
   width: 10%;
   border: none;
@@ -290,5 +291,84 @@ button {
   margin-top: -2%;
 }
 
+.input-hydration{
+  position:absolute;
+  top:11%;
+  left:73%;
+  height:40px;
+  background:white;
+  color: #2ac3ff;
+  font-weight:500;
+  box-shadow: 5px 5px 12px -1px rgba(0, 0, 0, 0.61),
+    -5px 5px 15px -1px rgba(0, 0, 0, 0.61);
+  cursor: pointer;
+}
 
+#hydrationForm {
+  background-color: #2ac3ff;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height:400px;
+  width:250px;
+  box-shadow: 5px 5px 12px -1px rgba(0, 0, 0, 0.61),
+    -5px 5px 15px -1px rgba(0, 0, 0, 0.61);
+}
 
+.pop-up-form{
+  display: none;
+  position: absolute;
+  width:500px;
+  left:40%;
+  top:15%;
+}
+
+#hydrationForm input[type=date], #hydrationForm input[type=number]{
+  background:white;
+  width:50%;
+  height:30px;
+}
+
+#hydrationForm button {
+  border-radius: 10%;
+  width:100px;
+  height:50px;
+  border:none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#hydrationForm aside {
+  display:flex;
+  justify-content: space-around;
+  width:100%;
+  align-items: center;
+}
+
+.closeBtn {
+  background-color:red;
+  color: #fff;
+}
+
+.form-error {
+  color: red;
+  font-weight: 900;
+  text-align: center;
+}
+
+.hydration-form {
+  margin-bottom: -10%;
+}
+
+.formBtn{
+  background-color:white;
+}
+
+label{
+  font-weight:700;
+}
+
+.blur {
+  filter: blur(4px);
+}

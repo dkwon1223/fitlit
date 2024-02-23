@@ -3,7 +3,7 @@ import "./images/user-icon.svg";
 import "./images/sleep-icon.svg";
 import "./images/hydration-icon.svg";
 import "./images/friends-icon.svg";
-import { fetchHydrationData, fetchUserData, fetchSleepData } from "./apiCalls";
+import { fetchHydrationData, fetchUserData, fetchSleepData, postHydrationData } from "./apiCalls";
 import { CircularFluidMeter } from "fluid-meter";
 import { getUserData, getAverageSteps } from "./users";
 import {
@@ -33,33 +33,17 @@ const userSleepTitle = document.querySelector("#dateSleepTitle");
 const sleepAverageTitle = document.querySelector("#averageSleepTitle");
 const sleepHoursMeterAvg = document.querySelector("#sleepHoursMeterAverage");
 const sleepHoursAvg = document.querySelector("#sleepHoursAverage");
-const sleepQualityMeterAvg = document.querySelector(
-  "#sleepQualityMeterAverage"
-);
+const sleepQualityMeterAvg = document.querySelector("#sleepQualityMeterAverage");
 const sleepQualityAvg = document.querySelector("#sleepQualityAverage");
-
+const addHydrationButton = document.querySelector('.input-hydration');
+const popUpError = document.querySelector('.pop-up-error')
+const popUpForm = document.querySelector('.pop-up-form')
+const closeFormButton = document.querySelector('.closeBtn')
+const dateInput = document.querySelector('#dateInput');
+const ozInput = document.querySelector("#ozInput");
+const submitButton = document.querySelector('.formBtn')
+const formError = document.querySelector('.form-error')
 let user, hydration, sleep, today, flOzDays, userSleepInfo, sleepDay;
-
-Promise.all([fetchHydrationData(), fetchUserData(), fetchSleepData()]).then(
-  ([hydrationFetch, usersData, sleepFetch]) => {
-    sleep = sleepFetch;
-    hydration = hydrationFetch;
-    const randomIndex =
-      Math.floor(Math.random() * (usersData.users.length - 1)) + 1;
-    user = getUserData(randomIndex, usersData.users);
-    let avgStep = getAverageSteps(usersData.users);
-    flOzDays = getFluidOunceForWeek(user.id, hydration.hydrationData);
-    today = flOzDays.length - 1;
-    userSleepInfo = getHoursSleptWeek(user.id, sleep);
-    sleepDay = userSleepInfo.length - 1;
-    updateButtonsDate(flOzDays);
-    updateUserInfo(avgStep);
-    updateHoursSlept(user, sleepDay);
-    updateSleepQuality(user, sleepDay);
-    updateSleepAverages(user);
-  }
-);
-
 let createdWaterMeter = new CircularFluidMeter(waterMeter, {
   borderWidth: 15,
   maxProgress: 100,
@@ -77,6 +61,83 @@ let createdWaterMeter = new CircularFluidMeter(waterMeter, {
   },
 });
 
+window.addEventListener("load", function() {
+  if(!user){
+    updatePage();
+  }else{
+    updatePage(user.id);
+  }
+});
+
+dayButtons.addEventListener("click", (event) => {
+  let button = event.target.closest("button");
+
+  if (!flOzDays[today - Number(button.id)]) {
+    userHydrationDate.innerHTML = `<h1>No Data to Display...</h1>`;
+    createdWaterMeter.progress = 0;
+  } else {
+    updateHydration(user, today - Number(button.id));
+    updateHoursSlept(user, sleepDay - Number(button.id));
+    updateSleepQuality(user, sleepDay - Number(button.id));
+  }
+});
+
+submitButton.addEventListener("click", () => {
+  if(ozInput.value.trim().length > 0 && dateInput.value.length > 0) {
+    closeForm();
+    let date = dateInput.value.split("-").join("/");
+    postHydrationData(date, ozInput.value, user.id);
+  } else if(ozInput.value.trim().length === 0 && dateInput.value.length > 0) {
+    event.preventDefault()
+    formError.innerText = 'Please enter Oz Drank...'
+  } else if(ozInput.value.trim().length > 0 && dateInput.value.length === 0){
+    event.preventDefault()
+    formError.innerText = 'Please select a date...'
+  } else {
+    event.preventDefault()
+    formError.innerText = 'You need to select a date and enter Oz Drank!'
+  }
+});
+
+addHydrationButton.addEventListener("click", openForm);
+
+closeFormButton.addEventListener("click", closeForm);
+
+function updatePage(){
+  Promise.all([fetchHydrationData(), fetchUserData(), fetchSleepData()]).then(
+    ([hydrationFetch, usersData, sleepFetch]) => {
+      sleep = sleepFetch;
+      hydration = hydrationFetch;
+      let avgStep = getAverageSteps(usersData.users);
+      user = userGrabber(usersData);
+      flOzDays = getFluidOunceForWeek(user.id, hydration.hydrationData);
+      today = flOzDays.length - 1;
+      userSleepInfo = getHoursSleptWeek(user.id, sleep);
+      sleepDay = userSleepInfo.length - 1;
+      updateButtonsDate(flOzDays);
+      updateUserInfo(avgStep);
+      updateHoursSlept(user, sleepDay);
+      updateSleepQuality(user, sleepDay);
+      updateSleepAverages(user);
+    }
+  );
+}
+
+function userGrabber(usersData) {
+  let index
+    if(sessionStorage.getItem("user")){
+      index = parseInt(sessionStorage.getItem("user"));
+    }else{
+    index = getUserIndex(usersData);
+    }
+    let currentUser = getUserData(index, usersData.users);
+    return currentUser;
+}
+
+function getUserIndex(usersData) {
+  return Math.floor(Math.random() * (usersData.users.length - 1)) + 1;
+}
+
 function updateUserInfo(avgStep) {
   info.innerHTML = `<h1 id="name">Welcome: ${user.name}</h1>
   <h3 id="userID">ID: ${user.id} </h3>
@@ -90,6 +151,7 @@ function updateUserInfo(avgStep) {
 }
 
 function updateFriendsList(friends) {
+  friendsList.innerHTML = '<h1 id="friendsHeader">Friends</h1>';
   friends.forEach((friend) => {
     friendsList.insertAdjacentHTML(
       "beforeend",
@@ -110,19 +172,6 @@ function updateHydration(user, day = 0) {
   userHydrationDate.innerHTML = `<h1>Water Consumption</h1><h3>${userHydration.date}</h3>`;
   createdWaterMeter.progress = userHydration.numOunces;
 }
-
-dayButtons.addEventListener("click", (event) => {
-  let button = event.target.closest("button");
-
-  if (!flOzDays[today - Number(button.id)]) {
-    userHydrationDate.innerHTML = `<h1>No Data to Display...</h1>`;
-    createdWaterMeter.progress = 0;
-  } else {
-    updateHydration(user, today - Number(button.id));
-    updateHoursSlept(user, sleepDay - Number(button.id));
-    updateSleepQuality(user, sleepDay - Number(button.id));
-  }
-});
 
 function updateHoursSlept(user, day) {
   const userSleepHours = getHoursSlept(user.id, sleep, userSleepInfo[day].date);
@@ -169,4 +218,12 @@ function updateButtonsDate(dates) {
   });
 }
 
-// export { updateUserInfo, updateFriendsList, updateHydration };
+function openForm() {
+  popUpForm.style.display = 'block';
+}
+
+function closeForm() {
+  event.preventDefault()
+  popUpForm.style.display = 'none'
+  sessionStorage.setItem("user", user.id);
+}

@@ -68,6 +68,22 @@
         </section>
         <section class="hydration-area">
           <div class="widget" id="hydrationWidget">
+            <button class="input-hydration">Add Hydration</button>
+            <h3 class="pop-up-error"></h3>
+            <div class="pop-up-form"> 
+              <form class="widget" id ="hydrationForm">
+                <h2 class="hydration-form">Add Hydration!</h2>
+                <h3 class="form-error"></h3>
+                <label for = "dateInput">Date</label>
+                <input type ="date" name ="dateInput" id="dateInput"/>
+                <label for="waterInput">Oz Drank</label>
+                <input type ="number" name ="waterInput" min ="0" max ="100" id="ozInput"/>
+                <aside> 
+                  <button type="submit" class ="formBtn">Add</button>
+                  <button class="closeBtn">Close</button>
+                </aside>
+              </form>
+            </div>
             <section class="visual-label" id="hydrationBottleLabel">
               <h1 id="dateHydrationTitle"></h1>
             </section>
