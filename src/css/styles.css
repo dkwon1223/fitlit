@@ -43,10 +43,6 @@ aside,
   justify-content: space-evenly;
 }
 
-.meter-container {
-  margin-bottom: 15%;
-}
-
 #meter-container-avg {
   margin-bottom: 5%;
 }
@@ -158,7 +154,7 @@ h1 {
 h2 {
   font-size: large;
   font-weight: 700;
-  margin: none;
+  margin: 0;
 }
 
 h3 {
@@ -212,13 +208,14 @@ button {
 
 #sleepWidget {
   background-image: linear-gradient(to right bottom, #5a65ff, #636dfe, #6d76fd, #757efc, #7e86fb, #7e86fb, #7e86fb, #7e86fb, #757efc, #6d76fd, #636dfe, #5a65ff);
-  height: 50%;
+  height: 55%;
   width: 100%;
+  
 }
 
 #sleepAveragesWidget {
   background-image: linear-gradient(to right bottom, #7a55fd, #8261fb, #8b6cf9, #9276f7, #9a81f4, #9a81f4, #9a81f4, #9a81f4, #9276f7, #8b6cf9, #8261fb, #7a55fd);
-  height: 50%;
+  height: 45%;
   width: 100%;
   margin-bottom: 2%;
 }
