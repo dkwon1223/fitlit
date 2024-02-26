@@ -43,13 +43,9 @@ const dateInput = document.querySelector('#dateInput');
 const ozInput = document.querySelector("#ozInput");
 const submitButton = document.querySelector('.formBtn');
 const formError = document.querySelector('.form-error');
-const hydrationIcon = document.querySelector('#hydrationIcon');
 const draggables = document.querySelectorAll('.draggable');
 const containers =  document.querySelectorAll('.container');
-// let user, hydration, sleep, today, flOzDays, userSleepInfo, sleepDay;
-// const submitButton = document.querySelector('.formBtn')
-// const formError = document.querySelector('.form-error')
-// const hydrationIcon = document.querySelector('#hydrationIcon')
+const sleepMeters = document.querySelectorAll('.sleep-meter');
 let user, hydration, sleep, today, flOzDays, userSleepInfo;
 let createdWaterMeter = new CircularFluidMeter(waterMeter, {
   borderWidth: 15,
@@ -259,11 +255,17 @@ function updateButtonsDate(dates) {
 
 function openForm() {
   popUpForm.style.display = 'block';
+  sleepMeters.forEach((meter) => {
+    meter.style.filter = 'blur(6px)'
+  })
 }
 
 function closeForm() {
-  popUpForm.style.display = 'none'
   sessionStorage.setItem("user", user.id);
+  popUpForm.style.display = 'none'
+  sleepMeters.forEach((meter) => {
+    meter.style.filter = 'none'
+  })
 }
 
 draggables.forEach((draggable) => {
