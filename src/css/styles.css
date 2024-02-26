@@ -383,6 +383,9 @@ label{
   filter: blur(4px);
 }
 
+.draggable {
+  cursor: move;
+}
 .draggable.dragging {
   opacity: 0.2;
 }
