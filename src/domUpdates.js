@@ -46,10 +46,10 @@ const formError = document.querySelector('.form-error');
 const hydrationIcon = document.querySelector('#hydrationIcon');
 const draggables = document.querySelectorAll('.draggable');
 const containers =  document.querySelectorAll('.container');
-let user, hydration, sleep, today, flOzDays, userSleepInfo, sleepDay;
-const submitButton = document.querySelector('.formBtn')
-const formError = document.querySelector('.form-error')
-const hydrationIcon = document.querySelector('#hydrationIcon')
+// let user, hydration, sleep, today, flOzDays, userSleepInfo, sleepDay;
+// const submitButton = document.querySelector('.formBtn')
+// const formError = document.querySelector('.form-error')
+// const hydrationIcon = document.querySelector('#hydrationIcon')
 let user, hydration, sleep, today, flOzDays, userSleepInfo;
 let createdWaterMeter = new CircularFluidMeter(waterMeter, {
   borderWidth: 15,
@@ -152,7 +152,8 @@ function userGrabber(usersData) {
   let index
     if(sessionStorage.getItem("user")){
       index = parseInt(sessionStorage.getItem("user"));
-    }else{
+      console.log('index', index)
+    } else {
     index = getUserIndex(usersData);
     }
     let currentUser = getUserData(index, usersData.users);
@@ -258,12 +259,10 @@ function updateButtonsDate(dates) {
 
 function openForm() {
   popUpForm.style.display = 'block';
-  hydrationIcon.style.filter = 'blur(6px)'
 }
 
 function closeForm() {
   popUpForm.style.display = 'none'
-  hydrationIcon.style.filter = 'none'
   sessionStorage.setItem("user", user.id);
 }
 
