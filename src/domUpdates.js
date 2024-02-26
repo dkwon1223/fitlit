@@ -41,6 +41,12 @@ const popUpForm = document.querySelector('.pop-up-form')
 const closeFormButton = document.querySelector('.closeBtn')
 const dateInput = document.querySelector('#dateInput');
 const ozInput = document.querySelector("#ozInput");
+const submitButton = document.querySelector('.formBtn');
+const formError = document.querySelector('.form-error');
+const hydrationIcon = document.querySelector('#hydrationIcon');
+const draggables = document.querySelectorAll('.draggable');
+const containers =  document.querySelectorAll('.container');
+let user, hydration, sleep, today, flOzDays, userSleepInfo, sleepDay;
 const submitButton = document.querySelector('.formBtn')
 const formError = document.querySelector('.form-error')
 const hydrationIcon = document.querySelector('#hydrationIcon')
@@ -260,3 +266,24 @@ function closeForm() {
   hydrationIcon.style.filter = 'none'
   sessionStorage.setItem("user", user.id);
 }
+
+draggables.forEach((draggable) => {
+  draggable.addEventListener("dragstart", () => {
+    draggable.classList.add("dragging");
+  })
+
+  draggable.addEventListener("dragend", () => {
+    draggable.classList.remove("dragging");
+  })
+})
+
+containers.forEach((container) => {
+  container.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    const draggable = document.querySelector(".dragging");
+    const fromContainer = draggable.parentNode;
+    const tgt = e.currentTarget.firstElementChild;
+    fromContainer.appendChild(tgt);
+    container.appendChild(draggable);
+  })
+})

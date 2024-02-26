@@ -1,37 +1,54 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Fitlit</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <section class="main">
+
       <nav id="days">
-        <button class="day-selector" id="0">0D</button>
-        <button class="day-selector" id="1">1D</button>
-        <button class="day-selector" id="2">2D</button>
-        <button class="day-selector" id="3">3D</button>
-        <button class="day-selector" id="4">4D</button>
-        <button class="day-selector" id="5">5D</button>
-        <button class="day-selector" id="6">6D</button>
-        <button class="day-selector" id="7">7D</button>
+        <button class="day-selector" id="0"></button>
+        <button class="day-selector" id="1"></button>
+        <button class="day-selector" id="2"></button>
+        <button class="day-selector" id="3"></button>
+        <button class="day-selector" id="4"></button>
+        <button class="day-selector" id="5"></button>
+        <button class="day-selector" id="6"></button>
+        <button class="day-selector" id="7"></button>
       </nav>
-      <section class="left-area">
-          <section class="info-area">
-            <div class="widget" id="infoCard">
-              <article id="info">
-              </article>
-              <div id="friends">
-                <h1 id="friendsHeader">Friends</h1>
-              </div>
-              <img class="icon" id="userIcon" src="./images/user-icon.svg" alt="user icon">
-              <img class="icon" id="friendsIcon" src="./images/friends-icon.svg" alt="friends icon">
+
+      <section class="widget-area">
+
+        <section class="info-area container">
+          <div class="widget draggable" id="infoCard" draggable="true">
+            <article id="info"></article>
+            <div id="friends">
+              <h1 id="friendsHeader">Friends</h1>
             </div>
-          </section>
-          <section class="sleep-area">
+            <!-- <img
+              class="icon"
+              id="userIcon"
+              src="./images/user-icon.svg"
+              alt="user icon"
+            />
+            <img
+              class="icon"
+              id="friendsIcon"
+              src="./images/friends-icon.svg"
+              alt="friends icon"
+            /> -->
+          </div>
+        </section>
+  
+        <section class="sleep-area container">
+          <div class="sleep-widget-pair draggable" draggable="true">
             <div class="widget" id="sleepAveragesWidget">
               <h1 id="averageSleepTitle"></h1>
               <section class="sleep-titles">
@@ -46,7 +63,12 @@
                   <div class="sleep-data" id="sleepQualityAverage">0</div>
                 </div>
               </div>
-              <img class="icon" id="sleepIcon1" src="./images/sleep-icon.svg" alt="sleep icon">
+              <!-- <img
+                class="icon"
+                id="sleepIcon1"
+                src="./images/sleep-icon.svg"
+                alt="sleep icon"
+              /> -->
             </div>
             <div class="widget" id="sleepWidget">
               <h1 id="dateSleepTitle"></h1>
@@ -61,25 +83,37 @@
                 <div class="sleep-meter" id="sleepQualityMeter">
                   <div class="sleep-data" id="sleepQuality">0</div>
                 </div>
-                <img class="icon" id="sleepIcon2" src="./images/sleep-icon.svg" alt="sleep icon">
+                <!-- <img
+                  class="icon"
+                  id="sleepIcon2"
+                  src="./images/sleep-icon.svg"
+                  alt="sleep icon"
+                /> -->
               </div>
             </div>
-          </section>
+          </div>
         </section>
-        <section class="hydration-area">
-          <div class="widget" id="hydrationWidget">
+        
+        <section class="hydration-area container">
+          <div class="widget draggable" id="hydrationWidget" draggable="true">
             <button class="input-hydration">Add Hydration</button>
             <h3 class="pop-up-error"></h3>
-            <div class="pop-up-form"> 
-              <form class="widget" id ="hydrationForm">
+            <div class="pop-up-form">
+              <form class="widget" id="hydrationForm">
                 <h2 class="hydration-form">Add Hydration!</h2>
                 <h3 class="form-error"></h3>
-                <label for = "dateInput">Date</label>
-                <input type ="date" name ="dateInput" id="dateInput"/>
+                <label for="dateInput">Date</label>
+                <input type="date" name="dateInput" id="dateInput" />
                 <label for="waterInput">Oz Drank</label>
-                <input type ="number" name ="waterInput" min ="0" max ="100" id="ozInput"/>
-                <aside> 
-                  <button type="submit" class ="formBtn">Add</button>
+                <input
+                  type="number"
+                  name="waterInput"
+                  min="0"
+                  max="100"
+                  id="ozInput"
+                />
+                <aside>
+                  <button type="submit" class="formBtn">Add</button>
                   <button class="closeBtn">Close</button>
                 </aside>
               </form>
@@ -92,11 +126,18 @@
                 <canvas id="waterMeter"></canvas>
               </div>
             </section>
-            <img class="icon" id="hydrationIcon" src="./images/hydration-icon.svg" alt="water icon"/>
-        </div>
+            <!-- <img
+              class="icon"
+              id="hydrationIcon"
+              src="./images/hydration-icon.svg"
+              alt="water icon"
+            /> -->
+          </div>
+        </section>
+
       </section>
+
     </section>
     <script src="bundle.js"></script>
   </body>
 </html>
-

@@ -3,8 +3,8 @@ html {
   background-image: linear-gradient(to right bottom, #e3edf7, #dde7f1, #d7e1eb, #d2dce6, #ccd6e0, #ccd6e0, #ccd6e0, #ccd6e0, #d2dce6, #d7e1eb, #dde7f1, #e3edf7);
   color: #e3edf7;
   background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   margin: 0;
   font-family: 'M PLUS Rounded 1c', sans-serif;
 }
@@ -12,7 +12,6 @@ html {
 section,
 aside,
 .main, 
-.left-area,
 .info-area,
 .sleep-area,
 .widget,
@@ -26,10 +25,12 @@ aside,
   display: flex;
 }
 
+.main,
+.sleep-area,
 #sleepWidget,
+#infoCard,
 #sleepAveragesWidget,
-#hydrationWidget,
-.left-area {
+#hydrationWidget {
   flex-direction: column;
 }
 
@@ -43,6 +44,7 @@ aside,
 }
 
 section,
+#infoCard,
 #days,
 #hydrationDaysLabel,
 #hydrationBottleLabel,
@@ -55,7 +57,6 @@ section,
 section,
 #hydrationBottle,
 #hydrationWidget
-.left-area,
 .hydration-area,
 #waterMeterContainer,
 #waterBottle {
@@ -64,6 +65,7 @@ section,
 
 .info-area,
 .sleep-area,
+.widget-area,
 #hydrationVisual,
 #hydrationDays,
 #hydrationDaysLabel,
@@ -93,73 +95,25 @@ section,
   width: 100vw;
 }
 
-.left-area {
-  width: 70%;
-}
-
-.hydration-area {
-  width: 30%;
-}
-
 .info-area,
-.sleep-area {
-  height: 50%;
+.sleep-area,
+.hydration-area {
+  height: 90%;
+  width: 33%;
 }
 
 .widget {
   height: 80%;
   width: 90%;
-  margin: 2%;
-  padding: 1%;
   border-radius: 3rem;
   box-shadow: 10px 10px 12px -1px rgba(0, 0, 0, 0.61),
     -10px 10px 15px -1px rgba(255, 255, 255, 0.822);
 }
 
 #infoCard {
+  height: 100%;
   width: 95%;
-  margin-top: 70px;
-  margin-bottom: 0;
-  flex-direction: row;
   background-image: linear-gradient(to right bottom, #ff6968, #fe706e, #fc7675, #fb7c7b, #f98281, #f98281, #f98281, #f98281, #fb7c7b, #fc7675, #fe706e, #ff6968);
-}
-
-.icon {
-  position: absolute;
-  height: 10%;
-  width: 10%;
-}
-
-#userIcon {
-  right: 57%;
-  top: 10%;
-}
-
-#friendsIcon {
-  right: 30%;
-  top: 8%;
-  height: 13%;
-}
-
-#sleepIcon1 {
-  right: 64%;
-  top: 55%;
-}
-
-#sleepIcon2 {
-  right: 29%;
-  top: 55%;
-}
-
-#hydrationIcon {
-  right: 0%;
-  top: 10%;
-  filter: none;
-}
-
-#info,
-#friends {
-  margin-top: 0;
 }
 
 #info {
@@ -168,8 +122,8 @@ section,
 
 #friends {
   width: 40%;
-  overflow-x: auto;
-  border-left: 4px solid;
+  overflow-y: auto;
+  border-top: 4px solid white;
 }
 
 #friendsHeader {
@@ -204,8 +158,7 @@ h3 {
 }
 
 #hydrationWidget {
-  margin-top: 40px;
-  height: 87%;
+  height: 100%;
   background-image: linear-gradient(to right bottom, #2ac3ff, #48c7fc, #5dcbfa, #6ecef7, #7ed2f5, #7ed2f5, #7ed2f5, #7ed2f5, #6ecef7, #5dcbfa, #48c7fc, #2ac3ff);
 }
 
@@ -215,12 +168,9 @@ h3 {
 
 #hydrationBottleLabel {
   margin-top: 10%;
-  margin-bottom: 10%;
 }
 
 #days {
-  position: absolute;
-  top: 0.5%;
   width: 100vw;
   height: 40px;
 }
@@ -252,10 +202,15 @@ button {
 
 #sleepWidget {
   background-image: linear-gradient(to right bottom, #5a65ff, #636dfe, #6d76fd, #757efc, #7e86fb, #7e86fb, #7e86fb, #7e86fb, #757efc, #6d76fd, #636dfe, #5a65ff);
+  height: 50%;
+  width: 100%;
 }
 
 #sleepAveragesWidget {
   background-image: linear-gradient(to right bottom, #7a55fd, #8261fb, #8b6cf9, #9276f7, #9a81f4, #9a81f4, #9a81f4, #9a81f4, #9276f7, #8b6cf9, #8261fb, #7a55fd);
+  height: 50%;
+  width: 100%;
+  margin-bottom: 2%;
 }
 
 .sleep-meter {
@@ -292,11 +247,14 @@ button {
   margin-top: -2%;
 }
 
+.sleep-widget-pair {
+  height: 100%;
+  width: 90%;
+}
+
 .input-hydration{
-  position:absolute;
-  top:11%;
-  left:73%;
-  height:40px;
+  height: 5%;
+  width: 40%;
   background:white;
   color: #2ac3ff;
   font-weight:500;
@@ -382,3 +340,12 @@ label{
 .blur {
   filter: blur(4px);
 }
+
+.draggable {
+  cursor: move;
+}
+
+.draggable.dragging {
+  opacity: 0.2;
+}
+
