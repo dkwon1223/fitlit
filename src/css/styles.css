@@ -382,3 +382,8 @@ label{
 .blur {
   filter: blur(4px);
 }
+
+.draggable.dragging {
+  opacity: 0.2;
+}
+
