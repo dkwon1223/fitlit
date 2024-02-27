@@ -103,7 +103,7 @@ section,
 }
 
 #days {
-  height: 5%;
+  height: 8%;
 }
 
 .info-area,
@@ -374,18 +374,18 @@ label{
 }
 
 #dragAndDrop1 {
-  top: 5%;
+  top: 8%;
   left: 30%;
 }
 
 #dragAndDrop2 {
-  top: 5%;
+  top: 8%;
   right: 30%;
 }
 
 .drag-and-drop-label {
   color: black;
-  height: 5%;
+  height: 2%;
   margin: 0;
   font-weight: 600;
 }
