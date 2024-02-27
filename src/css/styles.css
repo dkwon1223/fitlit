@@ -99,7 +99,7 @@ section,
 }
 
 .widget-area {
-  height: 95%;
+  height: 90%;
 }
 
 #days {
@@ -365,5 +365,28 @@ label{
 
 .draggable.dragging {
   opacity: 0.2;
+}
+
+.drag-drop-icon {
+  position: absolute;
+  height: 8%;
+  width: 8%;
+}
+
+#dragAndDrop1 {
+  top: 5%;
+  left: 30%;
+}
+
+#dragAndDrop2 {
+  top: 5%;
+  right: 30%;
+}
+
+.drag-and-drop-label {
+  color: black;
+  height: 5%;
+  margin: 0;
+  font-weight: 600;
 }
 
