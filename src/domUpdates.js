@@ -54,6 +54,7 @@ const draggables = document.querySelectorAll(".draggable");
 const containers = document.querySelectorAll(".container");
 const sleepMeters = document.querySelectorAll(".sleep-meter");
 
+let containerPositions = {};
 let user, hydration, sleep, today, flOzDays, userSleepInfo, currentPostion;
 let createdWaterMeter = new CircularFluidMeter(waterMeter, {
   borderWidth: 15,
@@ -119,9 +120,9 @@ function updatePage() {
     ([hydrationFetch, usersData, sleepFetch]) => {
       sleep = sleepFetch;
       hydration = hydrationFetch;
-      displayCurrentPostion(getPostions())
       let avgStep = getAverageSteps(usersData.users);
       user = userGrabber(usersData);
+      getPositions();
       flOzDays = getDays(user.id, hydration.hydrationData);
       today = flOzDays.length - 1;
       userSleepInfo = getHoursSleptWeek(user.id, sleep);
@@ -132,6 +133,19 @@ function updatePage() {
       updateSleepQuality(user, today);
     }
   );
+}
+
+function getPositions() {
+  if (sessionStorage.getItem("user")) {
+    containers.forEach((container) => {
+      let position = JSON.parse(sessionStorage.getItem('containerPositions')) || [];
+      let positionKeys = Object.keys(position)
+      positionKeys.forEach((key) => {
+        if(container.id === key)
+        container.appendChild(document.getElementById(position[key]))
+      });
+    });
+  }
 }
 
 function getDays(id, hydration) {
@@ -157,7 +171,6 @@ function userGrabber(usersData) {
   let index;
   if (sessionStorage.getItem("user")) {
     index = parseInt(sessionStorage.getItem("user"));
-    console.log("index", index);
   } else {
     index = getUserIndex(usersData);
   }
@@ -284,53 +297,31 @@ draggables.forEach((draggable) => {
 
   draggable.addEventListener("dragend", () => {
     draggable.classList.remove("dragging");
-    storePostions();
+
+    if(sessionStorage.getItem("user")) {
+      containers.forEach((container) => {
+        let newPosition = Array.from(container.children).map((element) => element.id);
+        containerPositions[container.id] = newPosition
+      })
+      sessionStorage.setItem('containerPositions', JSON.stringify(containerPositions))
+    }
   });
 });
 
 containers.forEach((container) => {
   container.addEventListener("dragover", (e) => {
     e.preventDefault();
-    const draggable = document.querySelector(".dragging");
-    const fromContainer = draggable.parentNode;
-    const tgt = e.currentTarget.firstElementChild;
-    fromContainer.appendChild(tgt);
-    container.appendChild(draggable);
+    let draggable = document.querySelector(".dragging");
+
+    if(draggable) {
+      let fromContainer = draggable.parentNode;
+      if(fromContainer !== container) {
+        let tgt = e.currentTarget.firstElementChild
+        if(tgt) {
+          fromContainer.replaceChild(tgt, draggable)
+          container.appendChild(draggable)
+        }
+      }
+    }
   });
 });
-
-function getPostions() {
-  if (sessionStorage.getItem("postions")) {
-    return JSON.parse(sessionStorage.getItem("postions"));
-  }else{
-  return false;
-  }
-}
-
-function getCurrentPostions() {
-  let currentPostions = [];
-  containers.forEach((container) => {
-    currentPostions.push(container.innerHTML);
-  });
-  return currentPostions;
-}
-function storePostions() {
-  sessionStorage.removeItem("postions")
-  currentPostion = getCurrentPostions();
-  sessionStorage.setItem("postions", JSON.stringify(currentPostion));
-  console.log(JSON.stringify(currentPostion))
-  console.log(JSON.parse(sessionStorage.getItem("postions")))
- 
-}
-function displayCurrentPostion(savedPos) {
-  let index = 0;
-  console.log(savedPos[0])
-  if (savedPos) {
-    containers.forEach((container) => {
-      container.innerHTML = savedPos[index];
-      index++;  
-    });
-  } else {
-    console.log("womp");
-  }
-}
