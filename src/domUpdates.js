@@ -312,7 +312,6 @@ containers.forEach((container) => {
   container.addEventListener("dragover", (e) => {
     e.preventDefault();
     let draggable = document.querySelector(".dragging");
-
     if(draggable) {
       let fromContainer = draggable.parentNode;
       if(fromContainer !== container) {
@@ -324,4 +323,4 @@ containers.forEach((container) => {
       }
     }
   });
-});
+
