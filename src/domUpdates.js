@@ -148,7 +148,6 @@ function userGrabber(usersData) {
   let index
     if(sessionStorage.getItem("user")){
       index = parseInt(sessionStorage.getItem("user"));
-      console.log('index', index)
     } else {
     index = getUserIndex(usersData);
     }
@@ -288,3 +287,5 @@ containers.forEach((container) => {
     container.appendChild(draggable);
   })
 })
+
+

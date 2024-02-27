@@ -88,7 +88,6 @@ section,
   text-align: center;
 }
 
-#days,
 #hydrationDaysLabel,
 #hydrationBottleLabel {
   height: 10%;
@@ -99,11 +98,22 @@ section,
   width: 100vw;
 }
 
+.widget-area {
+  height: 90%;
+}
+
+#days {
+  height: 6%;
+}
+
 .info-area,
 .sleep-area,
 .hydration-area {
   height: 90%;
   width: 33%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .widget {
@@ -128,7 +138,19 @@ section,
 #friends {
   width: 40%;
   overflow-y: auto;
+  overflow: scroll;
   border-top: 4px solid white;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
 #friendsHeader {
@@ -178,11 +200,11 @@ h3 {
 
 #days {
   width: 100vw;
-  height: 40px;
 }
 
 .day-selector,
-.input-hydration {
+.input-hydration,
+.save-layout-button {
   height: 80%;
   width: 10%;
   border: none;
@@ -192,18 +214,18 @@ h3 {
   font-weight: 400;
   color: #e3edf7;
   background-image: linear-gradient(to right bottom, #4b4b86, #50508b, #56568f, #5b5b94, #616199, #616199, #616199, #616199, #5b5b94, #56568f, #50508b, #4b4b86);
-  cursor: pointer;
   box-shadow: 5px 5px 12px -1px rgba(0, 0, 0, 0.61),
     -5px 5px 15px -1px rgba(255, 255, 255, 0.822);
 }
 
 button {
   background-color: #466585;
+  cursor: pointer;
 }
 
 #waterMeter {
-  height: 0;
-  width: 0;
+  height: 10%;
+  width: 10%;
 }
 
 #sleepWidget {
@@ -248,6 +270,11 @@ button {
 
 #averageSleepTitle {
   margin-top: -2%;
+}
+
+.sleep-titles {
+  height: 5%;
+  margin-bottom: 3%;
 }
 
 .sleep-widget-pair {
@@ -304,7 +331,6 @@ button {
   height:50px;
   border:none;
   font-size: 20px;
-  cursor: pointer;
 }
 
 #hydrationForm aside {
@@ -347,5 +373,40 @@ label{
 
 .draggable.dragging {
   opacity: 0.2;
+}
+
+.drag-drop-icon {
+  position: absolute;
+  height: 8%;
+  width: 8%;
+}
+
+#dragAndDrop1 {
+  top: 8%;
+  left: 30%;
+}
+
+#dragAndDrop2 {
+  top: 8%;
+  right: 30%;
+}
+
+.drag-and-drop-hint{
+  height: 4%;
+}
+
+.drag-and-drop-label {
+  color: black;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 5%;
+}
+.save-layout-button {
+  font-size: small;
+  height: 100%;
+  width: 60%;
+  margin-top: 2%;
+  cursor: pointer;
 }
 
