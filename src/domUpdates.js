@@ -172,6 +172,10 @@ function userGrabber(usersData) {
   if (sessionStorage.getItem("user")) {
     index = parseInt(sessionStorage.getItem("user"));
   } else {
+  let index
+    if(sessionStorage.getItem("user")){
+      index = parseInt(sessionStorage.getItem("user"));
+    } else {
     index = getUserIndex(usersData);
   }
   let currentUser = getUserData(index, usersData.users);
@@ -311,6 +315,7 @@ draggables.forEach((draggable) => {
 containers.forEach((container) => {
   container.addEventListener("dragover", (e) => {
     e.preventDefault();
+
     let draggable = document.querySelector(".dragging");
 
     if(draggable) {
@@ -325,3 +330,14 @@ containers.forEach((container) => {
     }
   });
 });
+
+    const draggable = document.querySelector(".dragging");
+    const fromContainer = draggable.parentNode;
+    const tgt = e.currentTarget.firstElementChild;
+    fromContainer.appendChild(tgt);
+    container.appendChild(draggable);
+  })
+})
+
+
+
