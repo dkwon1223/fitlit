@@ -3,7 +3,12 @@ import "./images/user-icon.svg";
 import "./images/sleep-icon.svg";
 import "./images/hydration-icon.svg";
 import "./images/friends-icon.svg";
-import { fetchHydrationData, fetchUserData, fetchSleepData, postHydrationData } from "./apiCalls";
+import {
+  fetchHydrationData,
+  fetchUserData,
+  fetchSleepData,
+  postHydrationData,
+} from "./apiCalls";
 import { CircularFluidMeter } from "fluid-meter";
 import { getUserData, getAverageSteps } from "./users";
 import {
@@ -33,25 +38,29 @@ const userSleepTitle = document.querySelector("#dateSleepTitle");
 const sleepAverageTitle = document.querySelector("#averageSleepTitle");
 const sleepHoursMeterAvg = document.querySelector("#sleepHoursMeterAverage");
 const sleepHoursAvg = document.querySelector("#sleepHoursAverage");
-const sleepQualityMeterAvg = document.querySelector("#sleepQualityMeterAverage");
+const sleepQualityMeterAvg = document.querySelector(
+  "#sleepQualityMeterAverage"
+);
 const sleepQualityAvg = document.querySelector("#sleepQualityAverage");
-const addHydrationButton = document.querySelector('.input-hydration');
-const popUpError = document.querySelector('.pop-up-error')
-const popUpForm = document.querySelector('.pop-up-form')
-const closeFormButton = document.querySelector('.closeBtn')
-const dateInput = document.querySelector('#dateInput');
+const addHydrationButton = document.querySelector(".input-hydration");
+const popUpError = document.querySelector(".pop-up-error");
+const popUpForm = document.querySelector(".pop-up-form");
+const closeFormButton = document.querySelector(".closeBtn");
+const dateInput = document.querySelector("#dateInput");
 const ozInput = document.querySelector("#ozInput");
-const submitButton = document.querySelector('.formBtn');
-const formError = document.querySelector('.form-error');
-const draggables = document.querySelectorAll('.draggable');
-const containers =  document.querySelectorAll('.container');
-const sleepMeters = document.querySelectorAll('.sleep-meter');
-let user, hydration, sleep, today, flOzDays, userSleepInfo;
+const submitButton = document.querySelector(".formBtn");
+const formError = document.querySelector(".form-error");
+const draggables = document.querySelectorAll(".draggable");
+const containers = document.querySelectorAll(".container");
+const sleepMeters = document.querySelectorAll(".sleep-meter");
+
+let containerPositions = {};
+let user, hydration, sleep, today, flOzDays, userSleepInfo, currentPostion;
 let createdWaterMeter = new CircularFluidMeter(waterMeter, {
   borderWidth: 15,
   maxProgress: 100,
   initialProgress: 0,
-  backgroundColor: "#002d59", 
+  backgroundColor: "#002d59",
   borderColor: "#3e4954",
   bubbleColor: "#6bcfff",
   fontFamily: "'M PLUS Rounded 1c', sans-serif",
@@ -64,8 +73,8 @@ let createdWaterMeter = new CircularFluidMeter(waterMeter, {
   },
 });
 
-window.addEventListener("load", function() {
-  if(!user) {
+window.addEventListener("load", function () {
+  if (!user) {
     updatePage();
   } else {
     updatePage(user.id);
@@ -86,19 +95,19 @@ dayButtons.addEventListener("click", (event) => {
 });
 
 submitButton.addEventListener("click", () => {
-  if(ozInput.value.length > 0 && dateInput.value.length > 0) {
+  if (ozInput.value.length > 0 && dateInput.value.length > 0) {
     closeForm();
     let date = dateInput.value.split("-").join("/");
     postHydrationData(date, ozInput.value, user.id);
-  } else if(ozInput.value.trim().length === 0 && dateInput.value.length > 0) {
-    event.preventDefault()
-    formError.innerText = 'Please enter Oz Drank...'
-  } else if(ozInput.value.trim().length > 0 && dateInput.value.length === 0){
-    event.preventDefault()
-    formError.innerText = 'Please select a date...'
+  } else if (ozInput.value.trim().length === 0 && dateInput.value.length > 0) {
+    event.preventDefault();
+    formError.innerText = "Please enter Oz Drank...";
+  } else if (ozInput.value.trim().length > 0 && dateInput.value.length === 0) {
+    event.preventDefault();
+    formError.innerText = "Please select a date...";
   } else {
-    event.preventDefault()
-    formError.innerText = 'You need to select a date and enter Oz Drank!'
+    event.preventDefault();
+    formError.innerText = "You need to select a date and enter Oz Drank!";
   }
 });
 
@@ -106,14 +115,15 @@ addHydrationButton.addEventListener("click", openForm);
 
 closeFormButton.addEventListener("click", closeForm);
 
-function updatePage(){
+function updatePage() {
   Promise.all([fetchHydrationData(), fetchUserData(), fetchSleepData()]).then(
     ([hydrationFetch, usersData, sleepFetch]) => {
       sleep = sleepFetch;
       hydration = hydrationFetch;
       let avgStep = getAverageSteps(usersData.users);
       user = userGrabber(usersData);
-      flOzDays = getDays(user.id, hydration.hydrationData)
+      getPositions();
+      flOzDays = getDays(user.id, hydration.hydrationData);
       today = flOzDays.length - 1;
       userSleepInfo = getHoursSleptWeek(user.id, sleep);
       updateButtonsDate(flOzDays);
@@ -125,34 +135,51 @@ function updatePage(){
   );
 }
 
+function getPositions() {
+  if (sessionStorage.getItem("user")) {
+    containers.forEach((container) => {
+      let position = JSON.parse(sessionStorage.getItem('containerPositions')) || [];
+      let positionKeys = Object.keys(position)
+      positionKeys.forEach((key) => {
+        if(container.id === key)
+        container.appendChild(document.getElementById(position[key]))
+      });
+    });
+  }
+}
+
 function getDays(id, hydration) {
   let flOzDays1 = getFluidOunceForWeek(id, hydration).map((day) => {
     return {
       date: new Date(day.date),
-      ounces: day.ounces        
-    }
-  })
+      ounces: day.ounces,
+    };
+  });
   flOzDays1.sort((a, b) => {
-    return a.date - b.date
-  })
+    return a.date - b.date;
+  });
   let flOzDays2 = flOzDays1.map((day) => {
     return {
-      date: day.date.toISOString().split('T')[0].replaceAll('-', '/'),
-      ounces: day.ounces
-    }
-  })
-  return flOzDays2
+      date: day.date.toISOString().split("T")[0].replaceAll("-", "/"),
+      ounces: day.ounces,
+    };
+  });
+  return flOzDays2;
 }
 
 function userGrabber(usersData) {
+  let index;
+  if (sessionStorage.getItem("user")) {
+    index = parseInt(sessionStorage.getItem("user"));
+  } else {
   let index
     if(sessionStorage.getItem("user")){
       index = parseInt(sessionStorage.getItem("user"));
     } else {
     index = getUserIndex(usersData);
-    }
-    let currentUser = getUserData(index, usersData.users);
-    return currentUser;
+  }
+  let currentUser = getUserData(index, usersData.users);
+  return currentUser;
 }
 
 function getUserIndex(usersData) {
@@ -195,7 +222,7 @@ function updateHydration(user, day = 0) {
 }
 
 function updateHoursSlept(user, day) {
-  if(!userSleepInfo[day]) {
+  if (!userSleepInfo[day]) {
     userSleepTitle.innerHTML = `<h1>Daily Sleep Stats</h1><h3>No Sleep Data For ${flOzDays[day].date}</h3>`;
     sleepProgressBar(0, sleepHours, sleepHoursMeter, 12);
   } else {
@@ -210,7 +237,7 @@ function updateHoursSlept(user, day) {
 }
 
 function updateSleepQuality(user, day) {
-  if(!userSleepInfo[day]) {
+  if (!userSleepInfo[day]) {
     sleepProgressBar(0, sleepQuality, sleepQualityMeter, 5);
   } else {
     const userSleepQuality = getSleepQuality(
@@ -253,33 +280,57 @@ function updateButtonsDate(dates) {
 }
 
 function openForm() {
-  popUpForm.style.display = 'block';
+  popUpForm.style.display = "block";
   sleepMeters.forEach((meter) => {
-    meter.style.filter = 'blur(6px)'
-  })
+    meter.style.filter = "blur(6px)";
+  });
 }
 
 function closeForm() {
   sessionStorage.setItem("user", user.id);
-  popUpForm.style.display = 'none'
+  popUpForm.style.display = "none";
   sleepMeters.forEach((meter) => {
-    meter.style.filter = 'none'
-  })
+    meter.style.filter = "none";
+  });
 }
 
 draggables.forEach((draggable) => {
   draggable.addEventListener("dragstart", () => {
     draggable.classList.add("dragging");
-  })
+  });
 
   draggable.addEventListener("dragend", () => {
     draggable.classList.remove("dragging");
-  })
-})
+
+    if(sessionStorage.getItem("user")) {
+      containers.forEach((container) => {
+        let newPosition = Array.from(container.children).map((element) => element.id);
+        containerPositions[container.id] = newPosition
+      })
+      sessionStorage.setItem('containerPositions', JSON.stringify(containerPositions))
+    }
+  });
+});
 
 containers.forEach((container) => {
   container.addEventListener("dragover", (e) => {
     e.preventDefault();
+
+    let draggable = document.querySelector(".dragging");
+
+    if(draggable) {
+      let fromContainer = draggable.parentNode;
+      if(fromContainer !== container) {
+        let tgt = e.currentTarget.firstElementChild
+        if(tgt) {
+          fromContainer.replaceChild(tgt, draggable)
+          container.appendChild(draggable)
+        }
+      }
+    }
+  });
+});
+
     const draggable = document.querySelector(".dragging");
     const fromContainer = draggable.parentNode;
     const tgt = e.currentTarget.firstElementChild;
@@ -287,5 +338,6 @@ containers.forEach((container) => {
     container.appendChild(draggable);
   })
 })
+
 
 
