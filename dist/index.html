@@ -27,18 +27,32 @@
       <section class="drag-and-drop-hint">
         <p class="drag-and-drop-label">Drag and Drop to Rearrange Widgets</p>
       </section>
-      
+
       <section class="widget-area">
-        <section class="info-area container" id="infoArea">
+
+        <section class="info-area container">
           <div class="widget draggable" id="infoCard" draggable="true">
             <article id="info"></article>
             <div id="friends">
               <h1 id="friendsHeader">Friends</h1>
             </div>
+            <!-- <img
+              class="icon"
+              id="userIcon"
+              src="./images/user-icon.svg"
+              alt="user icon"
+            />
+            <img
+              class="icon"
+              id="friendsIcon"
+              src="./images/friends-icon.svg"
+              alt="friends icon"
+            /> -->
           </div>
         </section>
-        <section class="sleep-area container" id="sleepArea">
-          <div class="sleep-widget-pair draggable" id="sleepSection" draggable="true">
+  
+        <section class="sleep-area container">
+          <div class="sleep-widget-pair draggable" draggable="true">
             <div class="widget" id="sleepAveragesWidget">
               <h1 id="averageSleepTitle"></h1>
               <section class="sleep-titles">
@@ -53,6 +67,12 @@
                   <div class="sleep-data" id="sleepQualityAverage">0</div>
                 </div>
               </div>
+              <!-- <img
+                class="icon"
+                id="sleepIcon1"
+                src="./images/sleep-icon.svg"
+                alt="sleep icon"
+              /> -->
             </div>
             <div class="widget" id="sleepWidget">
               <h1 id="dateSleepTitle"></h1>
@@ -67,11 +87,18 @@
                 <div class="sleep-meter" id="sleepQualityMeter">
                   <div class="sleep-data" id="sleepQuality">0</div>
                 </div>
+                <!-- <img
+                  class="icon"
+                  id="sleepIcon2"
+                  src="./images/sleep-icon.svg"
+                  alt="sleep icon"
+                /> -->
               </div>
             </div>
           </div>
         </section>
-        <section class="hydration-area container" id="hydrationArea">
+        
+        <section class="hydration-area container">
           <div class="widget draggable" id="hydrationWidget" draggable="true">
             <button class="input-hydration">Add Hydration</button>
             <h3 class="pop-up-error"></h3>
@@ -103,9 +130,14 @@
                 <canvas id="waterMeter"></canvas>
               </div>
             </section>
+            <!-- <img
+              class="icon"
+              id="hydrationIcon"
+              src="./images/hydration-icon.svg"
+              alt="water icon"
+            /> -->
           </div>
         </section>
-
         <img
           class="drag-drop-icon"
           id="dragAndDrop1"
@@ -118,8 +150,8 @@
           src="./images/drag-drop-icon.svg"
           alt="drag and drop icon"
         />
-
       </section>
+
     </section>
     <script src="bundle.js"></script>
   </body>

@@ -373,7 +373,6 @@ label{
 
 .draggable.dragging {
   opacity: 0.2;
-
 }
 
 .drag-drop-icon {
@@ -403,5 +402,11 @@ label{
   text-align: center;
   padding-top: 5%;
 }
-
+.save-layout-button {
+  font-size: small;
+  height: 100%;
+  width: 60%;
+  margin-top: 2%;
+  cursor: pointer;
+}
 
