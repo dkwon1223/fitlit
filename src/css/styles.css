@@ -88,7 +88,6 @@ section,
   text-align: center;
 }
 
-#days,
 #hydrationDaysLabel,
 #hydrationBottleLabel {
   height: 10%;
@@ -97,6 +96,14 @@ section,
 .main {
   height: 100vh;
   width: 100vw;
+}
+
+.widget-area {
+  height: 95%;
+}
+
+#days {
+  height: 5%;
 }
 
 .info-area,
@@ -128,7 +135,19 @@ section,
 #friends {
   width: 40%;
   overflow-y: auto;
+  overflow: scroll;
   border-top: 4px solid white;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
 #friendsHeader {
@@ -178,7 +197,6 @@ h3 {
 
 #days {
   width: 100vw;
-  height: 40px;
 }
 
 .day-selector,
