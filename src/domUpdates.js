@@ -43,11 +43,10 @@ const sleepQualityMeterAvg = document.querySelector(
 );
 const sleepQualityAvg = document.querySelector("#sleepQualityAverage");
 const addHydrationButton = document.querySelector(".input-hydration");
-const popUpError = document.querySelector(".pop-up-error");
 const popUpForm = document.querySelector(".pop-up-form");
 const closeFormButton = document.querySelector(".closeBtn");
 const dateInput = document.querySelector("#dateInput");
-const ozInput = document.querySelector("#ozInput");
+const ozInput = document.querySelector("#ozDrank");
 const submitButton = document.querySelector(".formBtn");
 const formError = document.querySelector(".form-error");
 const draggables = document.querySelectorAll(".draggable");
@@ -184,12 +183,12 @@ function getUserIndex(usersData) {
 
 function updateUserInfo(avgStep) {
   info.innerHTML = `<h1 id="name">Welcome: ${user.name}</h1>
-  <h3 id="userID">ID: ${user.id} </h3>
-  <h3 id="address">Address: ${user.address} </h3>
-  <h3 id="emailAddress">Email: ${user.email} </h3>
-  <h3 id="strideLength">Stride Length: ${user.strideLength}</h3>
-  <h3 id="stepGoal">My Step Goal: ${user.dailyStepGoal} steps</h3>
-  <h3 id="comparedStepGoal"> Avg Step Goal: ${avgStep} steps`;
+  <h2 id="userID">ID: ${user.id} </h2>
+  <h2 id="address">Address: ${user.address} </h2>
+  <h2 id="emailAddress">Email: ${user.email} </h2>
+  <h2 id="strideLength">Stride Length: ${user.strideLength}</h2>
+  <h2 id="stepGoal">My Step Goal: ${user.dailyStepGoal} steps</h2>
+  <h2 id="comparedStepGoal"> Avg Step Goal: ${avgStep} steps</h2>`;
   updateFriendsList(user.friends);
   updateHydration(user, today);
 }
@@ -200,8 +199,8 @@ function updateFriendsList(friends) {
     friendsList.insertAdjacentHTML(
       "beforeend",
       `<aside>
-        <h3>${friend.name}</h3>
-        <h3>Step Goal: ${friend.dailyStepGoal}</h3>
+        <h2>${friend.name}</h2>
+        <h2>Step Goal: ${friend.dailyStepGoal}</h2>
       </aside>`
     );
   });
@@ -213,13 +212,13 @@ function updateHydration(user, day = 0) {
     hydration.hydrationData,
     flOzDays[day].date
   );
-  userHydrationDate.innerHTML = `<h1>Water Consumption</h1><h3>${userHydration.date}</h3>`;
+  userHydrationDate.innerHTML = `<h1>Water Consumption</h1><h2>${userHydration.date}</h2>`;
   createdWaterMeter.progress = userHydration.numOunces;
 }
 
 function updateHoursSlept(user, day) {
   if (!userSleepInfo[day]) {
-    userSleepTitle.innerHTML = `<h1>Daily Sleep Stats</h1><h3>No Sleep Data For ${flOzDays[day].date}</h3>`;
+    userSleepTitle.innerHTML = `<h1>Daily Sleep Stats</h1><h2>No Sleep Data For ${flOzDays[day].date}</h2>`;
     sleepProgressBar(0, sleepHours, sleepHoursMeter, 12);
   } else {
     const userSleepHours = getHoursSlept(
@@ -227,7 +226,7 @@ function updateHoursSlept(user, day) {
       sleep,
       userSleepInfo[day].date
     );
-    userSleepTitle.innerHTML = `<h1>Daily Sleep Stats</h1><h3>${userSleepInfo[day].date}</h3>`;
+    userSleepTitle.innerHTML = `<h1>Daily Sleep Stats</h1><h2>${userSleepInfo[day].date}</h2>`;
     sleepProgressBar(userSleepHours, sleepHours, sleepHoursMeter, 12);
   }
 }

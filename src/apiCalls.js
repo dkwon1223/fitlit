@@ -31,7 +31,7 @@ function postHydrationData(date, numOunces, userID) {
     }
     return response.json();
   })
-  .then(data => console.log(data))
+  .then(data => data)
   .catch(error => popUpError.innerText = error.message)
 }
 

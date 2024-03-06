@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Fitlit</title>
@@ -12,7 +12,6 @@
   </head>
   <body>
     <section class="main">
-
       <nav id="days">
         <button class="day-selector" id="0"></button>
         <button class="day-selector" id="1"></button>
@@ -23,11 +22,9 @@
         <button class="day-selector" id="6"></button>
         <button class="day-selector" id="7"></button>
       </nav>
-
       <section class="drag-and-drop-hint">
         <p class="drag-and-drop-label">Drag and Drop to Rearrange Widgets</p>
       </section>
-
       <section class="widget-area">
         <section class="info-area container" id="infoArea">
           <div class="widget draggable" id="infoCard" draggable="true">
@@ -40,7 +37,7 @@
         <section class="sleep-area container" id="sleepArea">
           <div class="sleep-widget-pair draggable" id="sleepSection" draggable="true">
             <div class="widget" id="sleepAveragesWidget">
-              <h1 id="averageSleepTitle"></h1>
+              <h1 id="averageSleepTitle">Average Sleep Stats</h1>
               <section class="sleep-titles">
                 <h2>Avg Hours Slept</h2>
                 <h2>Avg Sleep Quality</h2>
@@ -74,27 +71,7 @@
         <section class="hydration-area container" id="hydrationArea">
           <div class="widget draggable" id="hydrationWidget" draggable="true">
             <button class="input-hydration">Add Hydration</button>
-            <h3 class="pop-up-error"></h3>
-            <div class="pop-up-form">
-              <form class="widget" id="hydrationForm">
-                <h2 class="hydration-form">Add Hydration!</h2>
-                <h3 class="form-error"></h3>
-                <label for="dateInput">Date</label>
-                <input type="date" name="dateInput" id="dateInput" />
-                <label for="waterInput">Oz Drank</label>
-                <input
-                  type="number"
-                  name="waterInput"
-                  min="0"
-                  max="100"
-                  id="ozInput"
-                />
-                <aside>
-                  <button type="submit" class="formBtn">Add</button>
-                  <button class="closeBtn">Close</button>
-                </aside>
-              </form>
-            </div>
+            <p class="pop-up-error"></p>
             <section class="visual-label" id="hydrationBottleLabel">
               <h1 id="dateHydrationTitle"></h1>
             </section>
@@ -104,8 +81,21 @@
               </div>
             </section>
           </div>
+          <div class="pop-up-form">
+            <form class="widget" id="hydrationForm">
+              <h2 class="hydration-form">Add Hydration!</h2>
+              <p class="form-error"></p>
+              <label for="dateInput">Date</label>
+              <input type="date" name="dateInput" id="dateInput">
+              <label for="ozDrank">Oz Drank</label>
+              <input type="number" name="ozDrank" id="ozDrank" min="0" max="100">
+              <aside>
+                <button type="submit" class="formBtn">Add</button>
+                <button class="closeBtn">Close</button>
+              </aside>
+            </form>
+          </div>
         </section>
-
         <img
           class="drag-drop-icon"
           id="dragAndDrop1"
@@ -118,7 +108,6 @@
           src="./images/drag-drop-icon.svg"
           alt="drag and drop icon"
         />
-
       </section>
     </section>
     <script src="bundle.js"></script>

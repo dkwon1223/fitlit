@@ -136,9 +136,8 @@ section,
 }
 
 #friends {
-  width: 40%;
-  overflow-y: auto;
-  overflow: scroll;
+  width: 90%;
+  overflow: auto;
   border-top: 4px solid white;
 }
 
@@ -285,8 +284,8 @@ button {
 .input-hydration{
   height: 5%;
   width: 40%;
-  background:white;
-  color: #2ac3ff;
+  background: #48494B;
+  color: #fff;
   font-weight:500;
   box-shadow: 5px 5px 12px -1px rgba(0, 0, 0, 0.61),
     -5px 5px 15px -1px rgba(0, 0, 0, 0.61);
@@ -349,10 +348,11 @@ button {
   color: red;
   font-weight: 900;
   text-align: center;
+  margin: 0px;
 }
 
 .hydration-form {
-  margin-bottom: -10%;
+  margin-bottom: 0px;
 }
 
 .formBtn{
